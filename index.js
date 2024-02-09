@@ -21,14 +21,14 @@ const writeData = (data) => {
 } catch (error) {
     console.log(error);
 }
-}
+};
 
 app.get("/",(req, res) => { 
     res.send("Wellcome to my first API with nodejs!!!!!!!!!!");
 });
 
-app.get("/books",(req, res) => {
-    const data  =readData();
+app.get("/books", (req, res) => {
+    const data  = readData();
     res.json(data.books);
 });
 
