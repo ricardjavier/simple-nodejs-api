@@ -20,11 +20,10 @@ const writeData = (data) => {
         fs.writeFileSync("./db.json" , JSON.stringify(data));
 } catch (error) {
     console.log(error);
-}
-};
+}};
 
 app.get("/",(req, res) => { 
-    res.send("Wellcome to my first API with nodejs!!!!!!!!!!");
+    res.send("Wellcome to my first API with nodejs!!!");
 });
 
 app.get("/books", (req, res) => {
