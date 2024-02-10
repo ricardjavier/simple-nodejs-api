@@ -31,6 +31,12 @@ app.get("/books", (req, res) => {
     res.json(data.books);
 });
 
+app.get("/books/:id", (req, res) => {
+    const data = readData();
+    const id = parseInt(req.params.id);
+    const book = data.books.find((books) => book.id === id);
+    res.json(book);
+});
 
 app.listen(3000, () => {
     console.log('Server listening on port 3000');
