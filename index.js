@@ -4,6 +4,7 @@ import bodyParser from  "body-parser";
 import { execFileSync } from 'child_process';
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 const readData = () => {
    
@@ -22,6 +23,7 @@ return JSON.parse(data);
             } catch (error) {
                 console.log(error);
         }
+        
   };
 
 app.get("/",(req, res) => { 
