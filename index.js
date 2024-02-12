@@ -1,32 +1,32 @@
 import express, { json } from 'express';
 import fs from 'fs';
-import bodyParser from  "body-parser";
+import bodyParser from "body-parser";
 import { execFileSync } from 'child_process';
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.json());
 
 const readData = () => {
-   
+
     try {
-const data = fs.readFileSync("./db.json");
-return JSON.parse(data);
+        const data = fs.readFileSync("./db.json");
+        return JSON.parse(data);
     } catch (error) {
         console.log(error);
-        return{};
-}
+        return {};
+    }
 };
-  const writeData =(data) => {
+const writeData = (data) => {
     try {
-    fs.writeFileSync("./db.json", JSON.stringify(data));
-       
-            } catch (error) {
-                console.log(error);
-        }
-        
-  };
+        fs.writeFileSync("./db.json", JSON.stringify(data));
 
-app.get("/",(req, res) => { 
+    } catch (error) {
+        console.log(error);
+    }
+
+};
+
+app.get("/", (req, res) => {
     res.send("Wellcome to my first API with nodejs!!!");
 
 });
@@ -64,13 +64,13 @@ app.put("/books/:id", (req, res) => {
 
     if (bookIndex !== -1) {
         data.books[bookIndex] = {
-        ...data.books[bookIndex],
-        ...body,
-    };
-    writeData(data);
-    res.json({ message: "Book updated successfully"});
- } else {
-res.status(407).json({ error: "Book not found"});
+            ...data.books[bookIndex],
+            ...body,
+        };
+        writeData(data);
+        res.json({ message: "Book updated successfully" });
+    } else {
+        res.status(407).json({ error: "Book not found" });
 
     }
 
@@ -78,14 +78,14 @@ res.status(407).json({ error: "Book not found"});
 
 app.delete("/books/:id", (req, res) => {
     const data = readData();
-    const id = parseInt( req.params.id);
+    const id = parseInt(req.params.id);
     const bookIndex = data.books.findIndex((book) => book.id === id);
     data.books.splice(bookIndex, 1);
     writeData(data);
-    res.json({message: "Book deleted successfully"});
+    res.json({ message: "Book deleted successfully" });
 
 
-   
+
 });
 
 
