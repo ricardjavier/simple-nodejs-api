@@ -12,7 +12,7 @@ const data = fs.readFileSync("./db.json");
 return JSON.parse(data);
     } catch (error) {
         console.log(error);
-        return { book: []} ;
+        return { books: []} ;
 }
 };
   const writeData =(data) => {
